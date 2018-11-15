@@ -12,5 +12,6 @@ module AwesomeManager
       g.assets false
       g.helper false
       g.jbuilder false
+    end
   end
 end
