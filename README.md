@@ -1,6 +1,6 @@
 # README
 
-#モデル図
+# モデル図
 
 - Userモデル
   - id: PK
