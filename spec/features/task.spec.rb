@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature  "タスク管理機能", type: :feature do
+  background do
+    FactoryBot.create(:task)
+    FactoryBot.create(:task, title: "テスト_2", content: "テストテスト")
+  end
   scenario "タスク一覧のテスト" do
-    Task.create!(title: "テスト_1", content: "テスト")
-    Task.create!(title: "テスト_2", content: "テストテスト")
-
     visit root_path
 
     expect(page).to have_content "テスト"
@@ -14,10 +15,10 @@ RSpec.feature  "タスク管理機能", type: :feature do
   scenario "タスク作成のテスト" do
     visit new_task_path
 
-    fill_in 'Title', with: "DIC"
-    fill_in 'Content', with: "オリアプを完成させる"
+    fill_in 'タスク名', with: "DIC"
+    fill_in '内容', with: "オリアプを完成させる"
 
-    click_on "Create Task"
+    click_on "登録する"
     
     expect(page).to have_content "DIC"
     expect(page).to have_content "オリアプを完成させる"
@@ -29,5 +30,9 @@ RSpec.feature  "タスク管理機能", type: :feature do
 
     expect(page).to have_content "テスト_3"
     expect(page).to have_content "テストテストテスト"
+  end
+
+  scenario "タスク一覧が作成日時順に並んでいるかのテスト" do
+
   end
 end
