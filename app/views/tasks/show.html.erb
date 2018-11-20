@@ -1,5 +1,5 @@
-<h1>詳細</h1>
-<h3>タスク名: <%= @task.title %></h3>
-<h3>詳細: <%= @task.content %></h3>
+<h1><%= t('task.show.name') %></h1>
+<h3><%= t('task.title') %>: <%= @task.title %></h3>
+<h3><%= t('task.content') %>: <%= @task.content %></h3>
 
-<%= link_to '戻る', root_path  %>
+<%= link_to t('task.back'), root_path  %>

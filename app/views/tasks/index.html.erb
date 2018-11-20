@@ -1,12 +1,9 @@
-<h1>タスク一覧</h1>
+<h1><%= t('task.index.name') %></h1>
 <table>
   <thead>
     <tr>
-      <th>タスク名</th>
-      <th>タスク詳細</th>
-      <th>詳細</th>
-      <th>編集</th>
-      <th>削除</th>
+      <th><%= t('task.title') %></th>
+      <th><%= t('task.content') %></th>
     </tr>
   </thead>
   <tbody>
@@ -14,12 +11,12 @@
       <tr>
         <td><%= task.title %></td>
         <td><%= task.content %></td>
-        <td><%= link_to '詳細', task_path(task.id) %></td>
-        <td><%= link_to '編集', edit_task_path(task.id) %></td>
-        <td><%= link_to '削除', task_path(task.id), method: :delete,
+        <td><%= link_to t('task.show.name'), task_path(task.id) %></td>
+        <td><%= link_to t('task.edit.name'), edit_task_path(task.id) %></td>
+        <td><%= link_to t('task.delete'), task_path(task.id), method: :delete,
                                                     data: {confirm: "本当に削除しますか？"} %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to '新規登録', new_task_path %>
+<%= link_to t('task.new.name'), new_task_path %>
