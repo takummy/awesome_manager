@@ -1,0 +1,14 @@
+ja:
+  task:
+    title: "タスク名"
+    content: "内容"
+    back: "戻る"
+    delete: "削除"
+    index:
+      name: "タスク一覧"
+    new:
+      name: "新規作成"
+    show:
+      name: "詳細"
+    edit:
+      name: "編集"
