@@ -23,6 +23,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
   gem 'capybara'
+  gem 'launchy'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
