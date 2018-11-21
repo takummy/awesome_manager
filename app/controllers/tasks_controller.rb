@@ -13,7 +13,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save
       flash[:success] = "登録完了"
-      redirect_to task_path(task.id)
+      redirect_to task_path(@task.id)
     else
       render :new
     end
