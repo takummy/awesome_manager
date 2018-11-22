@@ -2,10 +2,13 @@ ja:
   task:
     title: "タスク名"
     content: "内容"
+    expired_at: "終了期限"
     back: "戻る"
     delete: "削除"
     index:
       name: "タスク一覧"
+      reorder: "終了期限で並び替える"
+      sure?: "本当に削除しますか？"
     new:
       name: "新規作成"
     show:
