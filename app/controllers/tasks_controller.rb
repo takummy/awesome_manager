@@ -2,10 +2,10 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i(show edit update destroy)
 
   def index
-    if params[:sort_expired]
-      @tasks = Task.all.expired_at
+    if params[:task] && params[:task][:search]
+      @tasks = Task.search_title?(params[:task][:title_search])
     else
-      @tasks = Task.all.created_at
+      @tasks = Task.order_by_expired_at?(params[:sort_expired])
     end
   end
 

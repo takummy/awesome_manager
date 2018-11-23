@@ -1,0 +1,8 @@
+<%= form_with(scope: :task, url: root_path, method: :get, local: true) do |f| %>
+  <%= f.hidden_field :search, value:true %>
+  
+  <%= f.label :title_search %>
+  <%= f.text_field :title_search, placeholder: 'タイトル検索' %>
+  
+  <%= f.submit '検索' %>  
+<% end %>
