@@ -4,5 +4,13 @@
   <%= f.label :title_search %>
   <%= f.text_field :title_search, placeholder: 'タイトル検索' %>
   
+  <%= f.label :state_search %>
+  <%= f.label :waiting %>
+  <%= f.radio_button :state_search, 0 %>
+  <%= f.label :working %>
+  <%= f.radio_button :state_search, 1 %>
+  <%= f.label :completed %>
+  <%= f.radio_button :state_search, 2 %>
+  
   <%= f.submit '検索' %>  
 <% end %>
