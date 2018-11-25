@@ -1,16 +1,16 @@
 <%= form_with(scope: :task, url: root_path, method: :get, local: true) do |f| %>
   <%= f.hidden_field :search, value:true %>
   
-  <%= f.label :title_search %>
-  <%= f.text_field :title_search, placeholder: 'タイトル検索' %>
+  <%= f.label t('task.title_search') %>
+  <%= f.text_field :title_search, placeholder: t('task.title_search') %>
   
-  <%= f.label :state_search %>
-  <%= f.label :waiting %>
+  <%= f.label t('task.state_search') %>
+  <%= f.label t('task.waiting') %>
   <%= f.radio_button :state_search, 0 %>
-  <%= f.label :working %>
+  <%= f.label t('task.working') %>
   <%= f.radio_button :state_search, 1 %>
-  <%= f.label :completed %>
+  <%= f.label t('task.completed') %>
   <%= f.radio_button :state_search, 2 %>
   
-  <%= f.submit '検索' %>  
+  <%= f.submit t('task.index.search') %>  
 <% end %>

@@ -6,6 +6,7 @@
       <th><%= t('task.title') %></th>
       <th><%= t('task.content') %></th>
       <th><%= t('task.expired_at') %></th>
+      <th><%= t('task.state') %></th>
     </tr>
   </thead>
   <tbody>
@@ -14,6 +15,7 @@
         <td><%= task.title %></td>
         <td><%= task.content %></td>
         <td><%= task.expired_at %></td>
+        <td><%= task.state_i18n %></td>  
         <td><%= link_to t('task.show.name'), task_path(task.id) %></td>
         <td><%= link_to t('task.edit.name'), edit_task_path(task.id) %></td>
         <td><%= link_to t('task.delete'), task_path(task.id), method: :delete,

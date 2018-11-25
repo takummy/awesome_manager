@@ -3,12 +3,20 @@ ja:
     title: "タスク名"
     content: "内容"
     expired_at: "終了期限"
+    state: "進捗"
+    waiting: "未着手"
+    working: "着手"
+    completed: "完了"
+    title_search: "タイトル検索"
+    state_search: "進捗検索"
     back: "戻る"
     delete: "削除"
     index:
       name: "タスク一覧"
       reorder: "終了期限でならべかえる"
       sure?: "本当に削除しますか？"
+      search: "検索"
+      title_search: "タイトル検索"
     new:
       name: "新規作成"
     show:

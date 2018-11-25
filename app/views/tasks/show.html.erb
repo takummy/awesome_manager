@@ -2,5 +2,6 @@
 <h3><%= t('task.title') %>: <%= @task.title %></h3>
 <h3><%= t('task.content') %>: <%= @task.content %></h3>
 <h3><%= t('task.expired_at') %>: <%= @task.expired_at %></h3>
+<h3><%= t('task.state') %>: <%= @task.state_i18n %></h3>
 
 <%= link_to t('task.back'), root_path  %>
