@@ -7,7 +7,7 @@ class Task < ApplicationRecord
 
   scope :order_by_expired_at, ->(sort) { all.order(expired_at: :desc) if sort }
   scope :search_title, ->(title) { where('title LIKE?', "%#{title}%") if title }
-  scope :state_search, ->(state) { where('state = ?', "#{state}") if state}
+  scope :search_state, ->(state) { where('state = ?', "#{state}") if state}
 
 #メソッドパターン
   # private

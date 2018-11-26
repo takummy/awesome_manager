@@ -6,7 +6,7 @@ class TasksController < ApplicationController
     if params[:task] && params[:task][:search]
       @tasks = Task.order_by_expired_at(params[:sort_expired])
                    .search_title(params[:task][:title_search])
-                   .state_search(params[:task][:state_search])
+                   .search_state(params[:task][:state_search])
     end
   #メソッドパターン
     # @tasks = Task.order_by_expired_at?(params[:sort_expired])
