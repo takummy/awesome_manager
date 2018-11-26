@@ -5,24 +5,29 @@ class Task < ApplicationRecord
 
   enum state: { waiting: 0, working: 1, completed: 2 }
 
-  private
-  def self.order_by_expired_at?(sort)
-    if sort
-      all.order(expired_at: :desc)
-    else
-      all.order(created_at: :desc)
-    end
-  end
+  scope :order_by_expired_at, ->(sort) { all.order(expired_at: :desc) if sort }
+  scope :search_title, ->(title) { where('title LIKE?', "%#{title}%") if title }
+  scope :state_search, ->(state) { where('state = ?', "#{state}") if state}
 
-  def self.search_title?(title)
-    if title
-      where("title LIKE?", "%#{title}%")
-    end
-  end
+#メソッドパターン
+  # private
+  # def self.order_by_expired_at?(sort)
+  #   if sort
+  #     all.order(expired_at: :desc)
+  #   else
+  #     all.order(created_at: :desc)
+  #   end
+  # end
 
-  def self.search_state?(state)
-    if state
-      where("state = ?","#{state}")
-    end
-  end
+  # def self.search_title?(title)
+  #   if title
+  #     where("title LIKE?", "%#{title}%")
+  #   end
+  # end
+
+  # def self.search_state?(state)
+  #   if state
+  #     where("state = ?","#{state}")
+  #   end
+  # end
 end

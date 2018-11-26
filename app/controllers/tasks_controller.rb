@@ -2,17 +2,24 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i(show edit update destroy)
 
   def index
-    @tasks = Task.order_by_expired_at?(params[:sort_expired])
+    @tasks = Task.order_by_expired_at(params[:sort_expired])
     if params[:task] && params[:task][:search]
-      if
-        @tasks = Task.search_title?(params[:task][:title_search])
-                     .search_state?(params[:task][:state_search])
-      elsif
-        @tasks = Task.search_title?(params[:task][:title_search])
-      else 
-        @tasks = Task.search_state?(params[:task][:state_search])
-      end
+      @tasks = Task.order_by_expired_at(params[:sort_expired])
+                   .search_title(params[:task][:title_search])
+                   .state_search(params[:task][:state_search])
     end
+  #メソッドパターン
+    # @tasks = Task.order_by_expired_at?(params[:sort_expired])
+    # if params[:task] && params[:task][:search]
+    #   if
+    #     @tasks = Task.search_title?(params[:task][:title_search])
+    #                  .search_state?(params[:task][:state_search])
+    #   elsif
+    #     @tasks = Task.search_title
+    #   else 
+    #     @tasks = Task.search_state?(params[:task][:state_search])
+    #   end
+    # end
   end
 
   def new
