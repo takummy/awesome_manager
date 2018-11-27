@@ -1,6 +1,6 @@
 class AddStateToTasks < ActiveRecord::Migration[5.2]
   def up
-    add_column :tasks, :state, :integer, null: false, default: ""
+    add_column :tasks, :state, :integer, null: false, default: 0
   end
 
   def down

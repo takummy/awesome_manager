@@ -1,6 +1,6 @@
 class AddExpiredAtToTasks < ActiveRecord::Migration[5.2]
   def up
-    add_column :tasks, :expired_at, :date, default: "", null: false
+    add_column :tasks, :expired_at, :date, default: "#{Date.current}", null: false
   end
 
   def down
