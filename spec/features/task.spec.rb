@@ -60,9 +60,9 @@ RSpec.feature  "タスク管理機能", type: :feature do
     scenario "タスクが終了期限順に並び変わるかのテスト" do
       visit root_path
       expect(task[8]).to have_text '美容室'
-      save_and_open_page
-      click_link '終了期限でならべかえる'
 
+      click_link '終了期限でならべかえる'
+      
       sorted_tasks = all('tr td')
       expect(sorted_tasks[8]).to have_text '飲み会予約'
     end

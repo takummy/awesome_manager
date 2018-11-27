@@ -3,7 +3,7 @@ require 'faker'
 states = %i(waiting working completed)
 priorities = %i(low medium high)
 
-5.times do
+50.times do
   Task.create(
     title: Faker::Lorem.unique.word,
     content: Faker::Lorem.unique.sentence,
