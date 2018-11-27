@@ -21,5 +21,14 @@
     <%= f.label :completed %>
     <%= f.radio_button :state, :completed %>
   </div>
+  <div class="form-group">
+    <%= f.label :priority %>
+    <%= f.label :low %>
+    <%= f.radio_button :priority, :low %>
+    <%= f.label :medium %>
+    <%= f.radio_button :priority, :medium %>
+    <%= f.label :high %>
+    <%= f.radio_button :priority, :high %>
+  </div>
   <%= f.submit class: 'btn btn-primary' %>  
 <% end %>
