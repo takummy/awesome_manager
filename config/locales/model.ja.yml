@@ -17,3 +17,7 @@ ja:
         waiting: "未着手"
         working: "着手"
         completed: "完了"
+      priority:
+        low: "低"
+        medium: "中"
+        high: "高"
