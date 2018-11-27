@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.order_by_expired_at(params[:sort_expired])
+                 .order_by_priority(params[:sort_priority])
     if params[:task] && params[:task][:search]
       @tasks = Task.order_by_expired_at(params[:sort_expired])
                    .search_title(params[:task][:title_search])

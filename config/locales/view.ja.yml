@@ -12,6 +12,7 @@ ja:
     state_search: "進捗検索"
     back: "戻る"
     delete: "削除"
+    
     index:
       name: "タスク一覧"
       reorder:
