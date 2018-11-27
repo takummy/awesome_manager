@@ -4,10 +4,10 @@ RSpec.feature  "タスク管理機能", type: :feature do
   let(:now) { Date.current }
   background do
     FactoryBot.create(:task)
-    FactoryBot.create(:task, title: "美容室", content: "16時から", expired_at: "#{now}", state: 2)
-    FactoryBot.create(:task, title: "歯医者", content: "18時から", expired_at: "#{now}", state: 0)
-    FactoryBot.create(:task, title: "飲み会予約", content: "海浜幕張のちばチャン19時〜", expired_at: "#{now.since(1.week)}", state: 1)
-    FactoryBot.create(:task, title: "新幹線の予約", content: "東京駅10時発のやつ", expired_at: "#{now}", state: 0)
+    FactoryBot.create(:task, title: "美容室", content: "16時から", expired_at: "#{now}", state: 2, priority: 0, created_at: "#{Date.current.yesterday}")
+    FactoryBot.create(:task, title: "歯医者", content: "18時から", expired_at: "#{now}", state: 0, priority: 1, created_at: "#{Date.current.ago(2.day)}")
+    FactoryBot.create(:task, title: "飲み会予約", content: "海浜幕張のちばチャン19時〜", expired_at: "#{now.since(1.week)}", state: 1, priority: 2, created_at: "#{Date.current.ago(4.day)}")
+    FactoryBot.create(:task, title: "新幹線の予約", content: "東京駅10時発のやつ", expired_at: "#{now}", state: 0, priority: 2, created_at: "#{Date.current.ago(3.day)}")
   end
 
   scenario "タスク一覧のテスト" do
@@ -35,7 +35,7 @@ RSpec.feature  "タスク管理機能", type: :feature do
     expect(page).to have_content "未着手"
   end
 
-  let(:task) { Task.create!(title: "もくもく会", content: "15時〜五反田", expired_at: "#{now}", state: 0) }
+  let(:task) { Task.create!(title: "もくもく会", content: "15時〜五反田", expired_at: "#{now}", state: 0, priority: 1) }
   scenario "タスク詳細のテスト" do
     visit task_path(task.id)
     
@@ -49,22 +49,32 @@ RSpec.feature  "タスク管理機能", type: :feature do
     let(:task) { all('tr td') }
     scenario "タスク一覧が作成日時順に並んでいるかのテスト" do
       visit root_path
-      
-      expect(task[0]).not_to have_text '歯医者'
-      expect(task[7]).to have_text '美容室'
 
-      task[25].click_on '詳細'
+      expect(task[16]).not_to have_text '飲み会予約'
+      expect(task[32]).to have_text '新幹線の予約'
+
+      task[29].click_on '詳細'
       expect(page).to have_selector 'h3', text: '海浜幕張のちばチャン19時〜'
     end
 
     scenario "タスクが終了期限順に並び変わるかのテスト" do
       visit root_path
-
+      expect(task[8]).to have_text '美容室'
+      save_and_open_page
       click_link '終了期限でならべかえる'
-      expect(task[0]).to have_text 'Amazon定期便'
+
+      sorted_tasks = all('tr td')
+      expect(sorted_tasks[8]).to have_text '飲み会予約'
+    end
+
+    scenario "タスクが優先順位順に並び変わるかのテスト" do
+      visit root_path
+      expect(task[4]).to have_text '低'
       
-      task[11].click_on '詳細'
-      expect(page).to have_selector 'h3', text: '飲み会予約'
+      click_link '優先順位でならべかえる'
+  
+      sorted_tasks = all('tr td')
+      expect(sorted_tasks[4]).to have_text '高'
     end
   end
 
@@ -72,7 +82,7 @@ RSpec.feature  "タスク管理機能", type: :feature do
     let(:task) { all('tr td') }
     scenario "タイトル検索で絞り込めるかのテスト" do
       visit root_path
-      save_and_open_page
+  
       fill_in 'タイトル検索', with: '歯医者'
       click_on '検索'
       
