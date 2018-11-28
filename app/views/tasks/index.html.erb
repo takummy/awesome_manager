@@ -4,6 +4,7 @@
     <tr>
       <th><%= t('task.title') %></th>
       <th><%= t('task.content') %></th>
+      <th><%= t('task.expired_at') %></th>
     </tr>
   </thead>
   <tbody>
@@ -11,12 +12,14 @@
       <tr>
         <td><%= task.title %></td>
         <td><%= task.content %></td>
+        <td><%= task.expired_at %></td>
         <td><%= link_to t('task.show.name'), task_path(task.id) %></td>
         <td><%= link_to t('task.edit.name'), edit_task_path(task.id) %></td>
         <td><%= link_to t('task.delete'), task_path(task.id), method: :delete,
-                                                    data: {confirm: "本当に削除しますか？"} %></td>
+                                                    data: {confirm: t('task.index.sure?')} %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <%= link_to t('task.new.name'), new_task_path %>
+<%= link_to t('task.index.reorder'), root_path(sort_expired: true) %>
