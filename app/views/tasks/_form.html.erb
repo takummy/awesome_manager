@@ -10,7 +10,25 @@
   </div>
   <div class="form-group">
     <%= f.label :expired_at %>
-    <%= f.date_select :expired_at, {}, class: 'form-control' %>
+    <%= f.date_select :expired_at, class: 'form-control' %>
   </div>
-  <%= f.submit class: 'btn btn-primary' %>
+  <div class="form-group">
+    <%= f.label :state %>
+    <%= f.label :waiting %>
+    <%= f.radio_button :state, :waiting %>
+    <%= f.label :working %>
+    <%= f.radio_button :state, :working %>
+    <%= f.label :completed %>
+    <%= f.radio_button :state, :completed %>
+  </div>
+  <div class="form-group">
+    <%= f.label :priority %>
+    <%= f.label :low %>
+    <%= f.radio_button :priority, :low %>
+    <%= f.label :medium %>
+    <%= f.radio_button :priority, :medium %>
+    <%= f.label :high %>
+    <%= f.radio_button :priority, :high %>
+  </div>
+  <%= f.submit class: 'btn btn-primary' %>  
 <% end %>

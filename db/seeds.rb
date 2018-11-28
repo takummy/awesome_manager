@@ -1,9 +1,14 @@
 require 'faker'
 
-5.times do |i|
+states = %i(waiting working completed)
+priorities = %i(low medium high)
+
+50.times do
   Task.create(
-    title: "テスト#{i+1}", 
-    content: Faker::Lorem.unique.word,
-    expired_at: "#{Time.current}"
-    )
+    title: Faker::Lorem.unique.word,
+    content: Faker::Lorem.unique.sentence,
+    expired_at: Faker::Time.between(Date.current, Date.current.ago(1.month)),
+    state: "#{states.sample}",
+    priority: "#{priorities.sample}"
+  )
 end

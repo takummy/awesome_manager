@@ -16,7 +16,8 @@ gem 'jbuilder', '~> 2.5'
 
 # gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
-
+gem 'enum_help'
+gem 'kaminari'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do

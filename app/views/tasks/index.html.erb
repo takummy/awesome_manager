@@ -1,10 +1,15 @@
 <h1><%= t('task.index.name') %></h1>
+<%= render 'search_form' %>
+<%= page_entries_info @tasks, entry_name: 'task' %>
+<%= paginate @tasks %>
 <table>
   <thead>
     <tr>
       <th><%= t('task.title') %></th>
       <th><%= t('task.content') %></th>
       <th><%= t('task.expired_at') %></th>
+      <th><%= t('task.state') %></th>
+      <th><%= t('task.priority') %></th>
     </tr>
   </thead>
   <tbody>
@@ -13,6 +18,8 @@
         <td><%= task.title %></td>
         <td><%= task.content %></td>
         <td><%= task.expired_at %></td>
+        <td><%= task.state_i18n %></td>
+        <td><%= task.priority_i18n %></td>
         <td><%= link_to t('task.show.name'), task_path(task.id) %></td>
         <td><%= link_to t('task.edit.name'), edit_task_path(task.id) %></td>
         <td><%= link_to t('task.delete'), task_path(task.id), method: :delete,
@@ -22,4 +29,5 @@
   </tbody>
 </table>
 <%= link_to t('task.new.name'), new_task_path %>
-<%= link_to t('task.index.reorder'), root_path(sort_expired: true) %>
+<%= link_to t('task.index.reorder.expired_at'), root_path(sort_expired: true) %>
+<%= link_to t('task.index.reorder.priority'), root_path(sort_priority: true)  %>
