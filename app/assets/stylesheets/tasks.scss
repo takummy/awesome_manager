@@ -77,7 +77,7 @@ body {
   color: #3f95cc;
 }
 
-.tasks-wrapper, .show-wrapper {
+.tasks-wrapper, .show-wrapper, .new-wrapper, .edit-wrapper {
   margin: 0 auto;
 }
 
@@ -99,6 +99,7 @@ body {
   .btn-default {
     color: #8c8fb3;
     border-color: #eafefa00;
+    background-color: #eafefa00;
   }
 }
 
@@ -130,6 +131,10 @@ body {
 .col-center {
   float: none;
   margin: auto;
+}
+
+.form-group {
+ text-align: center;
 }
 
 th {
