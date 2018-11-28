@@ -4,8 +4,10 @@ class Task < ApplicationRecord
   validates :state, presence: true
 
   enum state: { waiting: 0, working: 1, completed: 2 }
+  enum priority: { low: 0, medium: 1, high: 2 }
 
   scope :order_by_expired_at, ->(sort) { all.order(expired_at: :desc) if sort }
+  scope :order_by_priority, ->(sort) { all.order(priority: :desc) if sort }
   scope :search_title, ->(title) { where('title LIKE?', "%#{title}%") if title }
   scope :search_state, ->(state) { where('state = ?', "#{state}") if state}
 

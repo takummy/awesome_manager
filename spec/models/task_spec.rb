@@ -24,7 +24,7 @@ RSpec.describe Task, type: :model do
   end
 
   describe "lengthのバリデーション" do
-    let(:text) { "バリ" }
+    text = "バリ"
     it "titleが51文字以上ならバリデーションが通らない" do
       task = Task.new(title: "#{text * 26}", content: "text51文字以上", state: 0)
       expect(task).not_to be_valid
@@ -50,10 +50,10 @@ RSpec.describe Task, type: :model do
     
     it "'D'で検索するとtask1が返ってくる" do
       expect(Task.search_title("D")).to include(Task.find_by(title: "DIC"))
-                                        #eq(Task.where(title: "DIC"))
+                                        #eq(Task.where(title: "DIC")) これだと上手くいかない
     end
 
-    it "未着手(0)で検索するとtask1,task2, task5が返ってくる" do
+    it "未着手で検索するとtask1,task2, task5が返ってくる" do
       expect(Task.search_state(0)).to include(Task.find_by(state: 0))
                                       #eq(Task.where(state: 0))
     end
