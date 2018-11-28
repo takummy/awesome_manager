@@ -1,0 +1,16 @@
+<div class="row">
+  <h1 class="page-title">Index</h1>
+  <div class="tasks-wrapper col-md-6 col-xs-6 col-center">
+    <div class="page-navi">
+     <%= paginate @users %>
+    </div>
+
+    <ul class="col-center">  
+      <% @users.each do |user| %>
+          <li class="col-md-6 col-6">
+              <%= link_to user.name, user %>   
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
