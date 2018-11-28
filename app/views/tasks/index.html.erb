@@ -1,5 +1,7 @@
 <h1><%= t('task.index.name') %></h1>
 <%= render 'search_form' %>
+<%= page_entries_info @tasks, entry_name: 'task' %>
+<%= paginate @tasks %>
 <table>
   <thead>
     <tr>
