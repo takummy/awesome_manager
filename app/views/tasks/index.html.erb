@@ -1,33 +1,44 @@
-<h1><%= t('task.index.name') %></h1>
-<%= render 'search_form' %>
-<%= page_entries_info @tasks, entry_name: 'task' %>
-<%= paginate @tasks %>
-<table>
-  <thead>
-    <tr>
-      <th><%= t('task.title') %></th>
-      <th><%= t('task.content') %></th>
-      <th><%= t('task.expired_at') %></th>
-      <th><%= t('task.state') %></th>
-      <th><%= t('task.priority') %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.content %></td>
-        <td><%= task.expired_at %></td>
-        <td><%= task.state_i18n %></td>
-        <td><%= task.priority_i18n %></td>
-        <td><%= link_to t('task.show.name'), task_path(task.id) %></td>
-        <td><%= link_to t('task.edit.name'), edit_task_path(task.id) %></td>
-        <td><%= link_to t('task.delete'), task_path(task.id), method: :delete,
-                                                    data: {confirm: t('task.index.sure?')} %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= link_to t('task.new.name'), new_task_path %>
-<%= link_to t('task.index.reorder.expired_at'), root_path(sort_expired: true) %>
-<%= link_to t('task.index.reorder.priority'), root_path(sort_priority: true)  %>
+<div class="row">
+  <h1 class="page-title"><%= t('task.index.name') %></h1>
+  <div class="tasks-wrapper col-md-6 col-xs-6 col-center">
+    <div class="search-form">
+      <%= render 'search_form' %>
+    </div>
+    <div class="page-navi">
+      <%= paginate @tasks %>
+    </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th><%= t('task.title') %></th>
+            <th><%= t('task.content') %></th>
+            <th><%= t('task.expired_at') %></th>
+            <th><%= t('task.state') %></th>
+            <th><%= t('task.priority') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tasks.each do |task| %>
+              <tr>
+              <td><%= task.title %></td>
+              <td><%= task.content %></td>
+              <td><%= task.expired_at %></td>
+              <td><%= task.state_i18n %></td>
+              <td><%= task.priority_i18n %></td>
+              <td><%= link_to t('task.show.name'), task_path(task.id) %></td>
+              <td><%= link_to t('task.edit.name'), edit_task_path(task.id) %></td>
+              <td><%= link_to t('task.delete'), task_path(task.id), method: :delete,
+                                                          data: {confirm: t('task.index.sure?')} %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="sort-links col-md-12 col-xs-12 row">
+        <%= link_to t('task.new.name'), new_task_path, class: "btn btn-primary col-md-4 col-xs-4" %>
+        <%= link_to t('task.index.reorder.expired_at'), root_path(sort_expired: true), class: "btn btn-success col-md-4 col-xs-4" %>
+        <%= link_to t('task.index.reorder.priority'), root_path(sort_priority: true), class: "btn btn-info col-md-4 col-xs-4"  %>
+      </div>
+    </div>
+  </div>
+</div>
