@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i(show edit udpate destroy)
+  before_action :set_user, only: %i(show edit update destroy)
 
   def new
     @user = User.new
@@ -26,11 +26,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update
+    if @user.update(user_params)
       flash[:success] = "編集しました！"
       redirect_to @user
     else
-      :edit
+      render :edit
     end
   end
 
