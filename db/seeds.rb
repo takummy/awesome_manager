@@ -12,3 +12,9 @@ priorities = %i(low medium high)
     priority: "#{priorities.sample}"
   )
 end
+
+User.create(
+  name: "John", 
+  email: "john@email.com", 
+  password: "password"
+  )
