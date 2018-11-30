@@ -3,7 +3,12 @@
     <div class="container-fluid row">
       <%= link_to 'Awesome Manager', root_path, id: "logo", class: "col-md-6" %>
       <div class="nav navbar-nav navbar-right col-md-6">
-        <%= link_to "ログイン", login_path, class: "login-link col-md-6" %>
+        <% if logged_in? %>
+          <%= link_to "タスク一覧", tasks_path, class: "login-link col-md-4" %>
+          <%= link_to "ログアウト", logout_path, method: :delete, class: "login-link col-md-4" %>
+        <% else %>
+          <%= link_to "ログイン", login_path, class: "login-link col-md-4" %>
+        <% end %>
       </div>
     </div>
   </nav>

@@ -36,8 +36,8 @@
       </table>
       <div class="sort-links col-md-12 col-xs-12 row">
         <%= link_to t('task.new.name'), new_task_path, class: "btn btn-primary col-md-4 col-xs-4" %>
-        <%= link_to t('task.index.reorder.expired_at'), root_path(sort_expired: true), class: "btn btn-success col-md-4 col-xs-4" %>
-        <%= link_to t('task.index.reorder.priority'), root_path(sort_priority: true), class: "btn btn-info col-md-4 col-xs-4"  %>
+        <%= link_to t('task.index.reorder.expired_at'), tasks_path(sort_expired: true), class: "btn btn-success col-md-4 col-xs-4" %>
+        <%= link_to t('task.index.reorder.priority'), tasks_path(sort_priority: true), class: "btn btn-info col-md-4 col-xs-4"  %>
       </div>
     </div>
     <%= link_to 'New', new_user_path %>

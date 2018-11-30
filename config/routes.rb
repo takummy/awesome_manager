@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   
+  root 'home#top'
   resources :users
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  root 'tasks#index'
-  resources :tasks, except: :index
+  resources :tasks
 end
