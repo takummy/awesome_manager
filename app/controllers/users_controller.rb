@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i(show edit update destroy)
+  before_action :already_exists, only: :new
+  before_action :correct_user, only: :show
 
   def new
     @user = User.new
