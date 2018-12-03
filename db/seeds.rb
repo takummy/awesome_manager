@@ -8,7 +8,8 @@ priorities = %i(low medium high)
 User.create(
   name: "owner",
   email: "owner@email.com",
-  password: "password"
+  password: "password",
+  admin: true
   )
 
 50.times do 

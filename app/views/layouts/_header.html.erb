@@ -1,9 +1,16 @@
 <header>
   <nav class="navbar-default">
     <div class="container-fluid row">
-      <%= link_to 'Awesome Manager', root_path, id: "logo", class: "col-md-6" %>
+      <% if admin_user? %>
+        <%= link_to 'Awesome Manager', [:admin, current_user], id: "logo", class: "col-md-6" %>
+      <% else %>
+        <%= link_to 'Awesome Manager', root_path, id: "logo", class: "col-md-6" %>
+      <% end %>
       <div class="nav navbar-nav navbar-right col-md-6">
         <% if logged_in? %>
+          <% if current_user.admin? %>
+            <%= link_to "管理者ページ", root_path, class: "login-link col-md-4" %>
+          <% end %>
           <%= link_to "タスク一覧", tasks_path, class: "login-link col-md-4" %>
           <%= link_to "ログアウト", logout_path, method: :delete, class: "login-link col-md-4" %>
         <% else %>
