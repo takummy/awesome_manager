@@ -4,10 +4,36 @@ RSpec.feature  "タスク管理機能", type: :feature do
   let(:now) { Date.current }
   background do
     FactoryBot.create(:task)
-    FactoryBot.create(:task, title: "美容室", content: "16時から", expired_at: "#{now}", state: 2, priority: 0, created_at: "#{Date.current.yesterday}")
-    FactoryBot.create(:task, title: "歯医者", content: "18時から", expired_at: "#{now}", state: 0, priority: 1, created_at: "#{Date.current.ago(2.day)}")
-    FactoryBot.create(:task, title: "飲み会予約", content: "海浜幕張のちばチャン19時〜", expired_at: "#{now.since(1.week)}", state: 1, priority: 2, created_at: "#{Date.current.ago(4.day)}")
-    FactoryBot.create(:task, title: "新幹線の予約", content: "東京駅10時発のやつ", expired_at: "#{now}", state: 0, priority: 2, created_at: "#{Date.current.ago(3.day)}")
+    FactoryBot.create(:task, 
+                      title: "美容室",
+                      content: "16時から", 
+                      expired_at: "#{now}", 
+                      state: 2, priority: 0, 
+                      created_at: "#{Date.current.yesterday}"
+                      )
+    FactoryBot.create(:task, 
+                      title: "歯医者", 
+                      content: "18時から", 
+                      expired_at: "#{now}", 
+                      state: 0, priority: 1, 
+                      created_at: "#{Date.current.ago(2.day)}"
+                      )
+    FactoryBot.create(:task, 
+                      title: "飲み会予約", 
+                      content: "海浜幕張のちばチャン19時〜", 
+                      expired_at: "#{now.since(1.week)}", 
+                      state: 1, 
+                      priority: 2, 
+                      created_at: "#{Date.current.ago(4.day)}"
+                      )
+    FactoryBot.create(:task, 
+                      title: "新幹線の予約", 
+                      content: "東京駅10時発のやつ", 
+                      expired_at: "#{now}", 
+                      state: 0, 
+                      priority: 2, 
+                      created_at: "#{Date.current.ago(3.day)}"
+                      )
   end
 
   scenario "タスク一覧のテスト" do
