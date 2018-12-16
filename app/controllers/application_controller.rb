@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
+  include ErrorHandlers
 
   def require_login
     unless logged_in?
@@ -20,13 +21,6 @@ class ApplicationController < ActionController::Base
     unless current_user?(user)
       flash[:danger] = "権限がありません"
       redirect_to root_path
-    end
-  end
-
-  def require_admin
-    unless logged_in? && current_user.admin?
-      flash[:danger] = "権限がありません"
-      redirect_to root_url
     end
   end
 end
