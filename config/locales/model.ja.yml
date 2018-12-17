@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       task: "タスク"
+      user: "ユーザー"
     attributes:
       task:
         title: "タスク名"
@@ -15,6 +16,11 @@ ja:
         low: "低"
         medium: "中"
         high: "高"
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
   enums:
     task:
       state:

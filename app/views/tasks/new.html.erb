@@ -1,4 +1,11 @@
-<h1><%= t('task.new.name') %></h1>
-
-<%= render 'form' %>
-<%= link_to t('task.index.name'), root_path  %>
+<div class="row">
+  <div class="new-wrapper col-center col-md-6 col-xs-6">
+    <div class="page-title">
+      <h1><%= t('task.new.name') %></h1>
+    </div>
+    <%= render 'form' %>
+    <div class="back-button row">
+      <%= link_to t('task.index.name'), tasks_path, class: "btn btn-default col-md-12" %>
+    </div>
+  </div>
+</div>

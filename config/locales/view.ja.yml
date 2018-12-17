@@ -15,7 +15,7 @@ ja:
     state_search: "進捗検索"
     back: "戻る"
     delete: "削除"
-    
+
     index:
       name: "タスク一覧"
       reorder:
@@ -30,3 +30,16 @@ ja:
       name: "詳細"
     edit:
       name: "編集"
+  user:
+    name: "名前"
+    email: "メールアドレス"
+    password: "パスワード"
+    login: "ログイン"
+    new:
+      name: "新規登録"
+    edit:
+      name: "編集"
+    index:
+      name: "ユーザー一覧"
+    show:
+      name: "詳細"

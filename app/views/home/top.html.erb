@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="jumbotron">
+        <% if logged_in? %>
+            <% if admin_user? %>
+                <h1 class="page-title">管理者ページ</h1>
+                <div class="row">
+                    <%= link_to "ユーザー一覧", admin_users_path, class: "col-md-6" %>
+                    <%= link_to  "新規ユーザー作成", new_admin_user_path, class: "col-md-6" %>
+                </div>
+            <% else %>
+                <h1 class="page-title">Home</h1>
+                <h2>タスクを登録しましょう！</h2>
+            <% end %>
+        <% else %>
+            <h1>Welcome to Awesome Manager</h1>
+            <p><small>~タスク管理ができます~</small></p>
+            <p><%= link_to '登録', new_user_path, class: "btn btn-primary signup-button" %></p>
+        <% end %>
+    </div>
+</div>
