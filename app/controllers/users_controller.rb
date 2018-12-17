@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i(show edit update destroy)
+  before_action :set_user, only: %i(show)
   before_action :already_exists, only: :new
   before_action :correct_user, only: :show
 
@@ -18,29 +18,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def index
-    @users = User.page(params[:page]).per(20)
-  end
-
   def show
-  end
-
-  def edit
-  end
-
-  def update
-    if @user.update(user_params)
-      flash[:success] = "編集しました！"
-      redirect_to @user
-    else
-      render :edit
-    end
-  end
-
-  def destroy 
-    @user.destroy
-    flash[:info] = "削除しました"
-    redirect_to users_path
   end
 
   private

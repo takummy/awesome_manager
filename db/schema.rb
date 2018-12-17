@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_29_035101) do
+ActiveRecord::Schema.define(version: 2018_12_03_094236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2018_11_29_035101) do
     t.text "content", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "expired_at", default: "2018-12-03", null: false
+    t.date "expired_at", default: "2018-12-09", null: false
     t.integer "state", default: 0, null: false
     t.integer "priority", default: 0, null: false
     t.bigint "user_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2018_11_29_035101) do
     t.string "password_digest", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
