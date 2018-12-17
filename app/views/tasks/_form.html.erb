@@ -30,6 +30,14 @@
     <%= f.label :high %>
     <%= f.radio_button :priority, :high %>
   </div>
+  
+  <div class="form-group">
+    <% labels.each do |label| %>
+      <%= f.check_box :label_ids, { multiple: true, checked: label[:checked],
+                                                    disabled: label[:disabled], include_hidden: false }, label[:id] %>
+      <label style="background-color: yellow"><%= label.name %></label>
+    <% end %>
+  </div>
   <div class="form-group">
     <%= f.submit class: 'btn btn-primary' %>  
   </div>

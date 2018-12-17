@@ -27,10 +27,13 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @labels = Label.all
+    @task.labels.build
   end
 
   def create
     @task = current_user.tasks.build(task_params)
+
     if @task.save
       flash[:success] = "登録完了"
       redirect_to task_path(@task.id)
@@ -43,6 +46,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @labels = @task.labels
   end
 
   def update
@@ -66,6 +70,14 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :expired_at, :state)
+    params.require(:task).permit(
+      :title,
+      :content,
+      :expired_at,
+      :state,
+      :priority,
+      label_ids: [],
+      labels_attributes: %i(id name)
+    )
   end
 end

@@ -1,5 +1,9 @@
 class Task < ApplicationRecord
   belongs_to :user
+  has_many :labelings
+  has_many :labels, through: :labelings, source: :label, inverse_of: :tasks
+
+  accepts_nested_attributes_for :labels
 
   validates :title, presence: true, length: {maximum: 50}
   validates :content, presence: true, length: {maximum: 300}
