@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i(show edit update destroy)
+  before_action :require_login
 
   def index
-    @tasks = Task.order_by_expired_at(params[:sort_expired])
-                                             .order_by_priority(params[:sort_priority])
+    @tasks = current_user.tasks.order_by_expired_at(params[:sort_expired])
+                               .order_by_priority(params[:sort_priority])
     if params[:task] && params[:task][:search]
-      @tasks = Task.order_by_expired_at(params[:sort_expired])
+      @tasks = current_user.tasks.order_by_expired_at(params[:sort_expired])
                    .search_title(params[:task][:title_search])
                    .search_state(params[:task][:state_search])
     end
@@ -29,7 +30,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       flash[:success] = "登録完了"
       redirect_to task_path(@task.id)
@@ -56,7 +57,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     flash[:success] = "削除しました "
-    redirect_to root_path 
+    redirect_to tasks_path 
   end
 
   private
