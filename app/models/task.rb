@@ -15,7 +15,12 @@ class Task < ApplicationRecord
   scope :order_by_expired_at, ->(sort) { all.order(expired_at: :desc) if sort }
   scope :order_by_priority, ->(sort) { all.order(priority: :desc) if sort }
   scope :search_title, ->(title) { where('title LIKE?', "%#{title}%") if title }
-  scope :search_state, ->(state) { where('state = ?', "#{state}") if state}
+  scope :search_state, ->(state) { where('state = ?', state) if state }
+  scope :search_label, ->(label) do
+    task_ids = Labeling.where(label_id: label).pluck(:task_id)
+    where(id: task_ids) if label
+  end
+
 
 #メソッドパターン
   # private

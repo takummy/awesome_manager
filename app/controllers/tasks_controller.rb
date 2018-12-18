@@ -1,17 +1,24 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i(show edit update destroy)
+  before_action :set_labels, only: %i(index new edit)
   before_action :require_login
 
   def index
     @tasks = current_user.tasks.order_by_expired_at(params[:sort_expired])
                                .order_by_priority(params[:sort_priority])
     if params[:task] && params[:task][:search]
-      @tasks = current_user.tasks.order_by_expired_at(params[:sort_expired])
-                   .search_title(params[:task][:title_search])
-                   .search_state(params[:task][:state_search])
+      task_search(params[:sort_expired],
+                  params[:task][:title_search],
+                  params[:task][:state_search],
+                  params[:task][:label_search])
+    # リファクタする前
+    # @tasks = current_user.tasks.order_by_expired_at(params[:sort_expired])
+    #                            .search_title(params[:task][:title_search])
+    #                            .search_state(params[:task][:state_search])
+    #                            .search_label(params[:task][:label_search])
     end
     @tasks = @tasks.page(params[:page]).per(10)
-  #メソッドパターン
+  #メソッドで書くパターン
     # @tasks = Task.order_by_expired_at?(params[:sort_expired])
     # if params[:task] && params[:task][:search]
     #   if
@@ -27,7 +34,6 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @labels = Label.all
     @task.labels.build
   end
 
@@ -46,7 +52,6 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @labels = @task.labels
   end
 
   def update
@@ -69,6 +74,10 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def set_labels
+    @labels = Label.all
+  end
+
   def task_params
     params.require(:task).permit(
       :title,
@@ -79,5 +88,13 @@ class TasksController < ApplicationController
       label_ids: [],
       labels_attributes: %i(id name)
     )
+  end
+
+
+  def task_search(sort_expired, title_search, state_search, label_search)
+    @tasks = current_user.tasks.order_by_expired_at(sort_expired)
+    @tasks = @tasks.search_title(title_search)
+    @tasks = @tasks.search_state(state_search)
+    @tasks = @tasks.search_label(label_search)
   end
 end

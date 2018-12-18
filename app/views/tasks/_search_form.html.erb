@@ -11,6 +11,12 @@
   <%= f.radio_button :state_search, 1 %>
   <%= f.label :completed, t('task.completed') %>
   <%= f.radio_button :state_search, 2 %>
-  
-  <%= f.submit t('task.index.search') %>  
+  <div>
+    <%= f.label :label_search, "ラベル検索" %>
+    <% labels.each do |label| %>
+      <%= f.radio_button :label_search, label.id %>
+      <%= label.name %>
+    <% end %>
+    <%= f.submit t('task.index.search') %>
+  </div>
 <% end %>
