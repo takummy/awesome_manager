@@ -34,7 +34,6 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @task.labels.build
   end
 
   def create
@@ -85,8 +84,7 @@ class TasksController < ApplicationController
       :expired_at,
       :state,
       :priority,
-      label_ids: [],
-      labels_attributes: %i(id name)
+      label_ids: []
     )
   end
 
