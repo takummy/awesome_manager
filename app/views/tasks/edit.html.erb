@@ -3,7 +3,7 @@
     <div class="page-title">
       <h1><%= t('task.edit.name') %></h1>
     </div>
-    <%= render 'form' %>
+    <%= render 'form', labels: @labels %>
     <div class="back-button row">
       <%= link_to t('task.back'), tasks_path, class: "btn btn-default col-md-12" %>
     </div>

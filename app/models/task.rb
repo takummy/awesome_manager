@@ -1,5 +1,9 @@
 class Task < ApplicationRecord
   belongs_to :user
+  has_many :labelings
+  has_many :labels, through: :labelings, source: :label, inverse_of: :tasks
+
+  accepts_nested_attributes_for :labels
 
   validates :title, presence: true, length: {maximum: 50}
   validates :content, presence: true, length: {maximum: 300}
@@ -11,7 +15,12 @@ class Task < ApplicationRecord
   scope :order_by_expired_at, ->(sort) { all.order(expired_at: :desc) if sort }
   scope :order_by_priority, ->(sort) { all.order(priority: :desc) if sort }
   scope :search_title, ->(title) { where('title LIKE?', "%#{title}%") if title }
-  scope :search_state, ->(state) { where('state = ?', "#{state}") if state}
+  scope :search_state, ->(state) { where('state = ?', state) if state }
+  scope :search_label, ->(label) do
+    task_ids = Labeling.where(label_id: label).pluck(:task_id)
+    where(id: task_ids) if label
+  end
+
 
 #メソッドパターン
   # private

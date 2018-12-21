@@ -16,6 +16,11 @@
     <h3>
       <span><%= t('task.priority') %>:</span> <%= @task.priority_i18n %>
     </h3>
+    <h3>
+      <% @task.labels.each do |label| %>
+        <label style="background-color: yellow"><%= label.name %></label>
+      <% end %>
+    </h3>
     <div class="back-button row">
       <%= link_to t('task.back'), tasks_path, class: "btn btn-default col-md-12"  %>
     </div>
