@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i(show edit update destroy)
-  before_action :set_labels, only: %i(index new edit)
+  before_action :set_labels, only: %i(index new edit create)
   before_action :require_login
 
   def index
