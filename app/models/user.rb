@@ -14,7 +14,7 @@ class User < ApplicationRecord
   private
 
   def last_admin?
-    self.class.where(admin: true).count <= 1
+    self.class.where(admin: true).count <= 1 && admin
   end
 
   def admin_must_exist
